@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PULSO · Ficha de Treino Inteligente</title>
+  <meta name="description" content="Preencha suas medidas, objetivos e hábitos e receba um treino de academia montado para você." />
+  <meta name="theme-color" content="#121417" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23C8F135'/%3E%3Cpath d='M4 16h7l2 4 3-10 3 13 2-7h7' fill='none' stroke='%23121417' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ TOPO ============ -->
+  <header class="topbar">
+    <div class="wrap topbar__in">
+      <a href="#" class="logo" aria-label="PULSO">
+        <span class="logo__mark"><svg viewBox="0 0 32 32"><path d="M4 16h7l2 4 3-10 3 13 2-7h7"/></svg></span>
+        <span class="logo__txt">PULSO</span>
+      </a>
+      <a class="btn btn--ghost btn--sm" href="public/ficha-preenchivel.pdf" download>Baixar ficha em PDF</a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero__ring" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">Avaliação · Hábitos · Treino</p>
+      <h1>Ficha de treino<br /><em>inteligente.</em></h1>
+      <svg class="hero__pulse" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 40H700l14-10 10 10 8-22 12 58 12-46 10 10h16l12 4 10-4H1200" />
+      </svg>
+      <p class="hero__lead">Preencha suas medidas, objetivos e hábitos. Em segundos você recebe um treino de academia pensado para o seu corpo, seu nível e sua rotina, além de recomendações de alimentação, sono e hidratação.</p>
+      <a href="#app" class="btn btn--lime">Montar meu treino</a>
+      <div class="features">
+        <div class="feature"><b>01</b><h3>Avaliação física</h3><p>IMC e relação cintura/altura calculados na hora</p></div>
+        <div class="feature"><b>02</b><h3>Treino sob medida</h3><p>Divisão, séries e descanso conforme seu objetivo</p></div>
+        <div class="feature"><b>03</b><h3>Pronto para imprimir</h3><p>Baixe em PDF e leve para a academia</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ APP ============ -->
+  <main id="app" class="app">
+    <div class="wrap">
+      <ol class="steps" aria-label="Etapas">
+        <li class="steps__item is-active" data-step-nav="1"><span>1</span>Seus dados</li>
+        <li class="steps__item" data-step-nav="2"><span>2</span>Hábitos</li>
+        <li class="steps__item" data-step-nav="3"><span>3</span>Seu treino</li>
+      </ol>
+
+      <form id="form" novalidate>
+        <!-- ---------- ETAPA 1 ---------- -->
+        <section class="step is-active" data-step="1">
+          <div class="card">
+            <h2 class="sec">Identificação</h2>
+            <div class="grid g-ident">
+              <label class="field"><span>Nome completo</span><input name="nome" type="text" autocomplete="name" /></label>
+              <label class="field"><span>Idade</span><div class="unit"><input name="idade" type="number" min="12" max="100" inputmode="numeric" /><i>anos</i></div></label>
+              <div class="field"><span>Sexo</span>
+                <div class="chips c2">
+                  <label class="chip"><input type="radio" name="sexo" value="F" /><b>Feminino</b></label>
+                  <label class="chip"><input type="radio" name="sexo" value="M" /><b>Masculino</b></label>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="sec">Medidas</h2>
+            <div class="grid g4">
+              <label class="field"><span>Peso *</span><div class="unit"><input name="peso" type="text" inputmode="decimal" placeholder="70" /><i>kg</i></div></label>
+              <label class="field"><span>Altura *</span><div class="unit"><input name="altura" type="text" inputmode="decimal" placeholder="170" /><i>cm</i></div></label>
+              <label class="field"><span>Cintura</span><div class="unit"><input name="cintura" type="text" inputmode="decimal" /><i>cm</i></div></label>
+              <label class="field"><span>Quadril</span><div class="unit"><input name="quadril" type="text" inputmode="decimal" /><i>cm</i></div></label>
+            </div>
+            <div class="grid g-auto">
+              <div class="auto"><span>IMC</span><strong id="imcLive">—</strong></div>
+              <div class="auto"><span>Classificação</span><strong id="imcClassLive">—</strong></div>
+              <div class="auto"><span>Cintura / altura</span><strong id="rceLive">—</strong></div>
+            </div>
+
+            <h2 class="sec">Objetivo principal *</h2>
+            <div class="chips c5">
+              <label class="chip chip--tall"><input type="radio" name="objetivo" value="Emagrecimento" /><b>Emagrecer</b><small>perder gordura</small></label>
+              <label class="chip chip--tall"><input type="radio" name="objetivo" value="Hipertrofia" /><b>Hipertrofia</b><small>ganhar massa</small></label>
+              <label class="chip chip--tall"><input type="radio" name="objetivo" value="Forca" /><b>Força</b><small>levantar mais</small></label>
+              <label class="chip chip--tall"><input type="radio" name="objetivo" value="Condicionamento" /><b>Condicionar</b><small>fôlego e resistência</small></label>
+              <label class="chip chip--tall"><input type="radio" name="objetivo" value="Saude" /><b>Saúde</b><small>qualidade de vida</small></label>
+            </div>
+
+            <h2 class="sec">Experiência e rotina</h2>
+            <div class="field"><span>Nível de experiência na musculação *</span>
+              <div class="chips c3">
+                <label class="chip chip--tall"><input type="radio" name="nivel" value="Iniciante" /><b>Iniciante</b><small>menos de 6 meses</small></label>
+                <label class="chip chip--tall"><input type="radio" name="nivel" value="Intermediario" /><b>Intermediário</b><small>6 meses a 2 anos</small></label>
+                <label class="chip chip--tall"><input type="radio" name="nivel" value="Avancado" /><b>Avançado</b><small>mais de 2 anos</small></label>
+              </div>
+            </div>
+            <div class="grid g2">
+              <div class="field"><span>Dias de treino por semana *</span>
+                <div class="chips c5">
+                  <label class="chip"><input type="radio" name="dias" value="2" /><b>2x</b></label>
+                  <label class="chip"><input type="radio" name="dias" value="3" /><b>3x</b></label>
+                  <label class="chip"><input type="radio" name="dias" value="4" /><b>4x</b></label>
+                  <label class="chip"><input type="radio" name="dias" value="5" /><b>5x</b></label>
+                  <label class="chip"><input type="radio" name="dias" value="6" /><b>6x</b></label>
+                </div>
+              </div>
+              <div class="field"><span>Tempo disponível por treino</span>
+                <div class="chips c4">
+                  <label class="chip"><input type="radio" name="tempo" value="30" /><b>30min</b></label>
+                  <label class="chip"><input type="radio" name="tempo" value="45" /><b>45min</b></label>
+                  <label class="chip"><input type="radio" name="tempo" value="60" /><b>1h</b></label>
+                  <label class="chip"><input type="radio" name="tempo" value="90" /><b>1h30</b></label>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="sec">Restrições e cuidados</h2>
+            <div class="chips c4">
+              <label class="chip chip--check"><input type="checkbox" name="r_joelho" /><b>Dor no joelho</b></label>
+              <label class="chip chip--check"><input type="checkbox" name="r_lombar" /><b>Dor lombar</b></label>
+              <label class="chip chip--check"><input type="checkbox" name="r_ombro" /><b>Dor no ombro</b></label>
+              <label class="chip chip--check"><input type="checkbox" name="r_impacto" /><b>Evitar impacto</b></label>
+            </div>
+            <label class="field"><span>Lesões, cirurgias, medicamentos ou orientações médicas</span><textarea name="obs" rows="3"></textarea></label>
+          </div>
+          <div class="actions">
+            <span class="hint">* campos obrigatórios</span>
+            <button type="button" class="btn btn--dark" data-go="2">Continuar</button>
+          </div>
+        </section>
+
+        <!-- ---------- ETAPA 2 ---------- -->
+        <section class="step" data-step="2">
+          <div class="card">
+            <h2 class="sec">Alimentação</h2>
+            <div class="q"><div><b>Refeições por dia</b><small>incluindo lanches</small></div>
+              <div class="chips c4">
+                <label class="chip"><input type="radio" name="refeicoes" value="1-2" /><b>1 a 2</b></label>
+                <label class="chip"><input type="radio" name="refeicoes" value="3" /><b>3</b></label>
+                <label class="chip"><input type="radio" name="refeicoes" value="4" /><b>4</b></label>
+                <label class="chip"><input type="radio" name="refeicoes" value="5+" /><b>5 ou +</b></label>
+              </div></div>
+            <div class="q"><div><b>Frutas e vegetais</b><small>frequência no seu dia a dia</small></div>
+              <div class="chips c3">
+                <label class="chip"><input type="radio" name="frutas" value="Raramente" /><b>Raramente</b></label>
+                <label class="chip"><input type="radio" name="frutas" value="Algumas" /><b>Às vezes</b></label>
+                <label class="chip"><input type="radio" name="frutas" value="Diariamente" /><b>Todo dia</b></label>
+              </div></div>
+            <div class="q"><div><b>Proteína nas refeições</b><small>ovos, carnes, laticínios, leguminosas</small></div>
+              <div class="chips c3">
+                <label class="chip"><input type="radio" name="proteina" value="Raramente" /><b>Raramente</b></label>
+                <label class="chip"><input type="radio" name="proteina" value="Algumas" /><b>Em algumas</b></label>
+                <label class="chip"><input type="radio" name="proteina" value="Quase" /><b>Em quase todas</b></label>
+              </div></div>
+            <div class="q"><div><b>Ultraprocessados</b><small>doces, salgadinhos, refrigerante, fast-food</small></div>
+              <div class="chips c3">
+                <label class="chip"><input type="radio" name="ultra" value="Raramente" /><b>Raramente</b></label>
+                <label class="chip"><input type="radio" name="ultra" value="Semanal" /><b>Toda semana</b></label>
+                <label class="chip"><input type="radio" name="ultra" value="Diario" /><b>Todo dia</b></label>
+              </div></div>
+            <div class="q"><div><b>Bebida alcoólica</b></div>
+              <div class="chips c3">
+                <label class="chip"><input type="radio" name="alcool" value="Nao" /><b>Não bebo</b></label>
+                <label class="chip"><input type="radio" name="alcool" value="Ocasional" /><b>Ocasional</b></label>
+                <label class="chip"><input type="radio" name="alcool" value="Frequente" /><b>Frequente</b></label>
+              </div></div>
+            <div class="q"><div><b>Água por dia</b><small>em litros (ex.: 1,5)</small></div>
+              <div class="unit unit--sm"><input name="agua" type="text" inputmode="decimal" /><i>litros</i></div></div>
+
+            <h2 class="sec">Sono e rotina</h2>
+            <div class="q"><div><b>Horas de sono por noite</b></div>
+              <div class="unit unit--sm"><input name="sono" type="text" inputmode="decimal" /><i>horas</i></div></div>
+            <div class="q"><div><b>Qualidade do sono</b></div>
+              <div class="chips c3">
+                <label class="chip"><input type="radio" name="sono_q" value="Ruim" /><b>Ruim</b></label>
+                <label class="chip"><input type="radio" name="sono_q" value="Regular" /><b>Regular</b></label>
+                <label class="chip"><input type="radio" name="sono_q" value="Boa" /><b>Boa</b></label>
+              </div></div>
+            <div class="q"><div><b>Nível de estresse</b></div>
+              <div class="chips c3">
+                <label class="chip"><input type="radio" name="estresse" value="Baixo" /><b>Baixo</b></label>
+                <label class="chip"><input type="radio" name="estresse" value="Moderado" /><b>Moderado</b></label>
+                <label class="chip"><input type="radio" name="estresse" value="Alto" /><b>Alto</b></label>
+              </div></div>
+
+            <div class="grid g2 mt">
+              <label class="field"><span>Restrição / preferência alimentar</span><input name="restricao_alim" type="text" /></label>
+              <label class="field"><span>Suplementos que usa</span><input name="suplementos" type="text" /></label>
+            </div>
+            <div class="grid g-meta">
+              <label class="field"><span>Minha meta pessoal</span><input name="meta" type="text" placeholder="ex.: perder 5 kg, correr 5 km" /></label>
+              <label class="field"><span>Prazo</span><input name="prazo" type="text" placeholder="ex.: março" /></label>
+            </div>
+          </div>
+          <div class="cta">
+            <div><h3>Tudo preenchido?</h3><p>Seu treino será montado na próxima etapa.</p></div>
+            <div class="cta__btns">
+              <button type="button" class="btn btn--ghost" data-go="1">Voltar</button>
+              <button type="submit" class="btn btn--lime">Gerar meu treino</button>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <!-- ---------- ETAPA 3 ---------- -->
+      <section class="step" data-step="3" id="resultado" aria-live="polite"></section>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p><strong>Importante:</strong> esta ficha traz orientações gerais de treino e hábitos e não substitui a avaliação de um médico, de um(a) profissional de Educação Física (CREF) e de um(a) nutricionista. Sentiu dor, tontura ou falta de ar? Pare o exercício e busque orientação.</p>
+      <p class="foot__brand">PULSO · Ficha de Treino Inteligente</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="alert"></div>
+
+  <script src="js/plano.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
